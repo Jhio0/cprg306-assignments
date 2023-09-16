@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "./item";
+import Item from "./Item";
 import itemList from "./item-list";
 
 function generate(props) {
