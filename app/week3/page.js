@@ -7,7 +7,7 @@ function generate(props) {
        <Item 
        key= {props.name}
        name= {props.name}
-       quantiy= {props.quantity}
+       quantity= {props.quantity}
        category= {props.category}
        />
     )
@@ -16,12 +16,12 @@ function generate(props) {
 function page() {
     return (
     <main class="bg-slate-950">
-        <div class="text-3xl font-bold m-2">
+        <div class="text-xl font-bold">
             <h2>Shopping List</h2>
             {itemList.map(generate)}
         </div>
     </main>
-    )
+    ) 
 }
 
 export default page;
