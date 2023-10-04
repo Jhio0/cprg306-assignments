@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import StudentInfo from './StudentInfo/StudentInfo'; // Assuming StudentInfo.js is in the same directory
 import Link from "next/link";
 
@@ -13,6 +13,7 @@ function Page() {
         <li><Link href="/week2">Week 2</Link></li>
         <li><Link href="/week3">Week 3</Link></li>
         <li><Link href="/week4">Week 4</Link></li>
+        <li><Link href="/week5">Week 5</Link></li>
       </ul>
     </div>
   </div>
