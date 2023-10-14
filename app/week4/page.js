@@ -38,6 +38,7 @@ function page() {
                 value={name}  
                 onChange={(e) => setName(e.target.value)}
                 onSubmit="{preventSubmit}"
+                required
                 />
             </div>
             <div className="flex justify-between">

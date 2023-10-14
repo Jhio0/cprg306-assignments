@@ -1,11 +1,10 @@
 "use client";
 import React from 'react';
 import { useState } from "react";
-import itemlist from './item-list';
 
 
 function Page2(props) {
-    const [items, setItem] = useState({
+    const [item, setItem] = useState({
         name: "",
         quantity: 0,
         category: ""
@@ -23,7 +22,7 @@ function Page2(props) {
     }  
 
     function submitItem(event) {
-        props.onAdd(items);
+        props.onAdd(item);
         setItem({
             name: "",
             quantity: 0,
@@ -42,7 +41,7 @@ function Page2(props) {
                 placeholder="Item name" 
                 name="name"
                 onChange={handleChange}
-                value={items.name}  
+                value={item.name}  
                 />
             </div>
             <div className="flex justify-between">
@@ -51,23 +50,25 @@ function Page2(props) {
                 type="number" min="1" max="99" 
                 name="quantity"
                 onChange={handleChange}
-                value={items.quantity}
+                value={item.quantity}
                 onSubmit="{preventSubmit}"
                 />
-                <select onChange={handleChange}
-                    className="ml-1 border-2 border-gray-300 p-2 rounded-lg font-sans">
-                    <option value={items.category} name="category"></option>
-                    <option value="produce" name="category">Produce</option>
-                    <option value="dairy" name="category">Dairy</option>
-                    <option value="bakery" name="category">Bakery</option>
-                    <option value="meat" name="category">Meat</option>
-                    <option value="frozen foods" name="category">Frozen Foods</option>
-                    <option value="canned goods" name="category">Canned Goods</option>
-                    <option value="dry goods" name="category">Dry Goods</option>
-                    <option value="beverages" name="category">Beverages</option>
-                    <option value="snacks" name="category">Snacks</option>
-                    <option value="household" name="category">Household</option>
-                    <option value="other" name="category">Other</option>
+                <select 
+                className="ml-1 border-2 border-gray-300 p-2 rounded-lg font-sans"
+                name="category"
+                onChange={handleChange}
+                value={item.category}>
+                    <option value="produce">Produce</option>
+                    <option value="dairy">Dairy</option>
+                    <option value="bakery">Bakery</option>
+                    <option value="meat">Meat</option>
+                    <option value="frozen foods">Frozen Foods</option>
+                    <option value="canned goods">Canned Goods</option>
+                    <option value="dry goods">Dry Goods</option>
+                    <option value="beverages">Beverages</option>
+                    <option value="snacks">Snacks</option>
+                    <option value="household">Household</option>
+                    <option value="other">Other</option>
                 </select>
             </div>
             <button 

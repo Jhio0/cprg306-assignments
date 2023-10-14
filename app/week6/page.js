@@ -51,8 +51,8 @@ function page() {
     // };
 
     function addItem(newItem) {
-        setItems(prevItems => {
-            return[...prevItems, newItem]
+        setItems(() => {
+            return[newItem]
         });
     }
 
@@ -61,7 +61,7 @@ function page() {
         // Combine sortedItems and items into a new array
         const combinedItems = [...sortedItems, ...items];
         setSortedItems(combinedItems);
-    }, [sortedItems, items]);
+    }, [items]);
     
 
     return (
