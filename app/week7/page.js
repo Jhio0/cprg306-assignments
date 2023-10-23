@@ -3,9 +3,9 @@ import React from "react";
 import {useState, useEffect} from "react";
 import Item from "./item";
 import itemlist from "./item-list";
+import ItemList from "./itemlist";
 import MealIdeas from "./meal-ideas";
-import Page2 from "./page2"; 
-import newItem from './new-item';
+import Page2 from "./page2";
 
 function generate(props) {
     return (
@@ -26,8 +26,6 @@ function page() {
     const [sortedItems, setSortedItems] = useState([...itemlist]);
     const [selectedItemName, setSelectedItemName] = useState("");
 
-    
-
     if (sortBy === 'name') {
         sortedItems.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortBy === 'category'){
@@ -38,19 +36,23 @@ function page() {
         setSortBy(value);
     };
 
-    const handleItemSelect = (itemName) => {
-        // Clean up the item name (remove size and emoji)
-        const cleanedItemName = itemName
-          .split(",")[0] // Split by comma and keep the first part
-          .trim() // Remove leading/trailing spaces
-          .replace(/🍗|🍞|🥛|🥚|🍌|🥦/g, ""); // Remove emoji characters
-    
-        setSelectedItemName(cleanedItemName);
-      };
+    const handleItemSelect = (item) => {
+        // Clean up the item name by removing the size and emoji
+        const cleanedItemName = item.name
+        .split(",")[0]
+        .trim()
+        .replace(/🍗|🍞|🥛|🥚|🍌|🥦/g, "");
+  
+      setSelectedItemName(cleanedItemName);
+    };
 
-      function addItem(newItem) {
-        setItems((prevItems) => [...prevItems, newItem]);
-      }
+    
+
+    function addItem(newItem) {
+        setItems(() => {
+            return[newItem]
+        });
+    }
 
     // Combine sortedItems and items when they change
     useEffect(() => {
@@ -80,18 +82,14 @@ function page() {
                 category
             </button>
             <h2>Shopping List</h2>
-            {
-                sortedItems.map(generate)
+            <ItemList itemlist={sortedItems} onItemSelect={handleItemSelect} />
 
-            }
         </div>
-        <newItem
-        items={sortedItems}
-        onItemSelect={handleItemSelect} // Pass the event handler to ItemList
-      />
-      <MealIdeas ingredient={selectedItemName} /> {/* Pass selectedItemName as ingredient */}
+        <div className="right-panel">
+        <MealIdeas ingredient={selectedItemName} />
+      </div>
     </main>
-    ); 
+    ) 
 }
 
 export default page;

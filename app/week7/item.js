@@ -1,13 +1,12 @@
 import React from "react";
 
-function Item(props) {
-    return (
-        <ul className="flex flex-col">
-          <li className=" p-2 m-4 bg-slate-900 max-w-sm">
-            <h2 className="text-xl font-bold">{props.name}</h2>
-            <div className="text-sm">Buy {props.quantity} in {props.category}</div>
-          </li>
-        </ul>
-    );
+function Item({ name, quantity, category, onSelect }) {
+  return (
+    <li className=" p-2 m-4 bg-slate-900 max-w-sm" onClick={onSelect}>
+      <h2 className="text-xl font-bold">{name}</h2>
+      <div className="text-sm">Buy {quantity} in {category}</div>
+    </li>
+  );
 }
-export default Item;    
+
+export default Item;
