@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import {useState, useEffect} from "react";
-import Item from "./item";
 import itemlist from "./item-list";
 import ItemList from "./itemlist";
 import MealIdeas from "./meal-ideas";
