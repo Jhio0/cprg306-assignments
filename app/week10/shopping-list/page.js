@@ -62,7 +62,7 @@ function page() {
   };
 
   const handleItemSelect = (item) => {
-      const cleanedItemName = item.name
+      const cleanedItemName = item.data.name
           .split(",")[0]
           .trim()
           .replace(/🍗|🍞|🥛|🥚|🍌|🥦/g, "");
@@ -71,6 +71,7 @@ function page() {
   };
 
   const handleAddItem = async (newItem) => {
+    console.log(newItem);
     try {
         // Add the new item to Firestore using the service function
         const newItemId = await addItem(user.uid, newItem);
@@ -80,14 +81,24 @@ function page() {
             ...prevItems,
             {
                 id: newItemId,
-                data: newItem,
+                name: newItem.name,
+                quantity: newItem.quantity,
+                category: newItem.category,
             },
         ]);
+        let newSortedItems = [...items];
+        if (sortBy === 'name') {
+            newSortedItems.sort((a, b) => a.data.name.localeCompare(b.data.name));
+        } else if (sortBy === 'category') {
+            newSortedItems.sort((a, b) => a.data.category.localeCompare(b.data.category));
+        }
+
+        setSortedItems(newSortedItems);
     } catch (error) {
         console.error("Error adding item:", error);
         // Handle the error or throw it for the calling code to handle
     }
-};
+    };
 
     return (
     <main class="bg-slate-950">

@@ -4,7 +4,7 @@ import { collection, getDocs, addDoc, query } from "firebase/firestore";
 async function getItems(userId) {
     try {
         // Reference to the "items" subcollection under the user's document
-        const itemsCollectionRef = collection(db, `users/${userId}/items`);
+        const itemsCollectionRef = query(collection(db, `users/${userId}/items`));
         
         // Get all documents in the "items" subcollection
         const querySnapshot = await getDocs(itemsCollectionRef);
@@ -43,7 +43,7 @@ async function addItem(userId, item) {
         });
 
         // Return the ID of the newly created document
-        return newDocRef.id;
+        return newDocRef;
     } catch (error) {
         console.error("Error adding item:", error);
         // Handle the error or throw it for the calling code to handle

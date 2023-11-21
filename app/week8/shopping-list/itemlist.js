@@ -6,9 +6,9 @@ function ItemList({ itemlist, onItemSelect }) {
       return (
         <Item
           key={props.id}
-          name={props.name}
-          quantity={props.quantity}
-          category={props.category}
+          name={props.data.name}
+          quantity={props.data.quantity}
+          category={props.data.category}
           onSelect={() => onItemSelect(props)} // Pass the item as an argument
         />
       );
